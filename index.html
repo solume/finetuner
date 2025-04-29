@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finetuner | Stop Guessing. Start Optimizing AI Prompts.</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Add a favicon! -->
+    <style>
+        :root {
+            --primary: #4fd1c5; /* Teal/Cyan */
+            --secondary: #6b46c1; /* Deep Purple */
+            --accent: #d53f8c; /* Magenta */
+            --dark: #1a202c; /* Very Dark Gray/Blue */
+            --dark-secondary: #2d3748; /* Dark Gray/Blue */
+            --text: #e2e8f0; /* Light Gray */
+            --text-secondary: #a0aec0; /* Medium Gray */
+            --success: #48bb78; /* Green */
+            --highlight: #f6e05e; /* Yellow */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; /* Using Inter font */
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800; /* Bolder */
+            font-size: 26px; /* Slightly larger */
+            color: var(--primary);
+            letter-spacing: -1px;
+            /* Optional: Subtle gradient */
+            /* background: linear-gradient(90deg, var(--primary), #81e6d9); */
+            /* -webkit-background-clip: text; */
+            /* -webkit-text-fill-color: transparent; */
+            /* background-clip: text; */
+        }
+
+        .domain {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            font-weight: 500;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0 80px; /* More padding */
+            position: relative;
+            /* Optional: Subtle background pattern/gradient */
+            /* background: radial-gradient(circle at top center, rgba(45, 55, 72, 0.5) 0%, var(--dark) 70%); */
+        }
+
+        .hero h1 {
+            font-size: 48px; /* Larger */
+            margin-bottom: 25px;
+            line-height: 1.2;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 19px; /* Slightly larger */
+            margin: 0 auto 35px auto;
+            color: var(--text-secondary);
+            max-width: 700px; /* Wider */
+        }
+
+        .cta-button-hero {
+             display: inline-block;
+             padding: 14px 30px; /* Larger button */
+             background-color: var(--accent);
+             color: white;
+             border: none;
+             border-radius: 10px; /* More rounded */
+             font-size: 17px; /* Slightly larger text */
+             font-weight: 600;
+             cursor: pointer;
+             transition: all 0.3s ease;
+             text-decoration: none;
+             margin-top: 10px;
+             box-shadow: 0 5px 15px rgba(213, 63, 140, 0.2); /* Accent shadow */
+        }
+
+        .cta-button-hero:hover {
+             background-color: #c5307c; /* Darker accent */
+             transform: translateY(-3px);
+             box-shadow: 0 8px 20px rgba(213, 63, 140, 0.3);
+        }
+
+
+        /* --- Features Section --- */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 34px; /* Larger */
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+            gap: 30px; /* More gap */
+        }
+
+        .feature-card {
+            background-color: var(--dark-secondary);
+            padding: 30px; /* More padding */
+            border-radius: 16px; /* More rounded */
+            border: 1px solid rgba(255,255,255,0.08); /* Slightly more visible border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: rgba(79, 209, 197, 0.5); /* Highlight border on hover */
+        }
+
+        .feature-card h3 {
+            font-size: 20px; /* Larger */
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 16px; /* Slightly larger */
+            flex-grow: 1;
+        }
+
+        /* --- Pricing Section --- */
+        .pricing {
+            padding: 80px 0;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 34px; /* Larger */
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px; /* More gap */
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background-color: var(--dark-secondary);
+            padding: 35px; /* More padding */
+            border-radius: 18px; /* More rounded */
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card:hover {
+             transform: translateY(-8px); /* More lift */
+             box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--highlight);
+            box-shadow: 0 0 30px rgba(246, 224, 94, 0.25); /* Enhanced glow */
+            position: relative;
+            overflow: hidden;
+            transform: scale(1.03); /* Slightly larger popular card */
+        }
+         .pricing-card.popular:hover {
+            transform: scale(1.03) translateY(-8px); /* Keep scale on hover */
+         }
+
+         .popular-badge {
+            position: absolute;
+            top: 18px;
+            right: -35px; /* Adjust for rotation */
+            background-color: var(--highlight);
+            color: var(--dark); /* Dark text on yellow */
+            padding: 5px 35px; /* Wider padding */
+            font-size: 13px; /* Slightly larger */
+            font-weight: 700;
+            transform: rotate(45deg);
+            transform-origin: top right;
+            letter-spacing: 0.5px;
+         }
+
+
+        .pricing-card h3 {
+            font-size: 24px; /* Larger */
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 42px; /* Larger */
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text);
+            line-height: 1.1;
+        }
+
+        .price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 30px 0; /* More margin */
+            text-align: left;
+            padding-left: 15px;
+            flex-grow: 1;
+        }
+
+        .pricing-card li {
+            margin-bottom: 14px; /* More spacing */
+            color: var(--text-secondary);
+            font-size: 16px; /* Slightly larger */
+            position: relative;
+            padding-left: 30px; /* Space for cooler checkmark */
+        }
+         .pricing-card li::before {
+            content: '✓';
+            color: var(--primary); /* Use primary color for check */
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 18px; /* Larger check */
+         }
+
+
+        .pricing-card button.cta-select-plan { /* More specific selector */
+            width: 100%;
+            padding: 15px; /* Larger button */
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px; /* More rounded */
+            font-size: 17px; /* Larger text */
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            box-shadow: 0 5px 15px rgba(213, 63, 140, 0.2);
+        }
+
+        .pricing-card button.cta-select-plan:hover {
+            background-color: #c5307c; /* Darker accent */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(213, 63, 140, 0.3);
+        }
+
+        .pricing-card.popular button.cta-select-plan {
+            background-color: var(--highlight);
+            color: var(--dark); /* Dark text on yellow */
+            box-shadow: 0 5px 15px rgba(246, 224, 94, 0.3);
+        }
+
+         .pricing-card.popular button.cta-select-plan:hover {
+            background-color: #e9c74a; /* Darker yellow on hover */
+            box-shadow: 0 8px 20px rgba(246, 224, 94, 0.4);
+             transform: translateY(-3px); /* Hover effect for popular button too */
+         }
+
+
+        /* --- Signup Modal --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 32, 44, 0.8); /* Use dark color */
+            backdrop-filter: blur(8px); /* Stronger blur */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0; /* Start hidden for transition */
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+        }
+
+
+        .modal-content {
+            background: linear-gradient(145deg, var(--dark-secondary), var(--dark)); /* Subtle gradient */
+            padding: 40px; /* More padding */
+            border-radius: 20px; /* More rounded */
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5); /* Stronger shadow */
+            width: 90%;
+            max-width: 450px; /* Slightly wider */
+            position: relative;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transform: scale(0.95); /* Start slightly smaller */
+            transition: transform 0.3s ease;
+        }
+         .modal-overlay.visible .modal-content {
+             transform: scale(1); /* Scale in */
+         }
+
+
+        .close-button {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--text-secondary);
+            font-size: 26px;
+            cursor: pointer;
+            line-height: 1;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .close-button:hover {
+            background: rgba(255,255,255,0.2);
+            color: var(--text);
+        }
+
+
+        .modal-content h3 {
+            font-size: 24px; /* Larger */
+            margin-bottom: 12px;
+            color: var(--text);
+            font-weight: 600;
+        }
+        .modal-content p {
+            font-size: 16px; /* Slightly larger */
+            color: var(--text-secondary);
+            margin-bottom: 30px; /* More spacing */
+        }
+
+
+        .modal-content input[type="email"] { /* Target email input */
+            width: 100%;
+            padding: 15px; /* More padding */
+            margin-bottom: 18px; /* More spacing */
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px; /* More rounded */
+            font-size: 16px;
+            background-color: rgba(255,255,255,0.05);
+            color: var(--text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .modal-content input[type="email"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.3); /* Focus ring */
+        }
+
+        .modal-content button[type="submit"] {
+            width: 100%;
+            padding: 15px; /* Match input padding */
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px; /* Match input radius */
+            font-size: 17px; /* Match button styles */
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(213, 63, 140, 0.2);
+        }
+
+        .modal-content button[type="submit"]:hover {
+            background-color: #c5307c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(213, 63, 140, 0.3);
+        }
+
+        /* --- Success Message (within modal) --- */
+        #modal-success-message {
+            display: none;
+            text-align: center;
+        }
+
+        #modal-success-message svg {
+            width: 60px; /* Larger */
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        #modal-success-message h4 {
+            margin-bottom: 15px;
+            color: var(--success);
+            font-size: 22px; /* Larger */
+            font-weight: 600;
+        }
+
+        #modal-success-message p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px; /* Match other modal text */
+        }
+
+
+        /* --- Footer --- */
+        footer {
+            padding: 40px 0; /* More padding */
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 15px; /* Slightly larger */
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 60px; /* More spacing */
+        }
+
+        .footer-domain {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .pricing-grid {
+                grid-template-columns: 1fr; /* Stack pricing cards */
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+             .pricing-card.popular {
+                 transform: scale(1); /* Reset scale on stack */
+             }
+             .pricing-card.popular:hover {
+                 transform: translateY(-8px); /* Keep hover lift */
+             }
+             .popular-badge {
+                top: 15px;
+                right: -30px;
+            }
+            .feature-grid {
+                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax */
+             }
+        }
+
+        @media (max-width: 768px) {
+             .hero h1 {
+                font-size: 40px; /* Adjust hero size */
+            }
+             .hero p {
+                 font-size: 18px;
+             }
+             .features h2, .pricing h2 {
+                 font-size: 30px;
+             }
+             .feature-grid {
+                grid-template-columns: 1fr; /* Stack features */
+            }
+             .pricing-grid {
+                 max-width: 450px; /* Slightly narrower */
+             }
+             .pricing-card {
+                 padding: 30px;
+             }
+        }
+
+        @media (max-width: 600px) {
+            .domain {
+                display: none; /* Hide domain on small screens */
+            }
+            header {
+                justify-content: center; /* Center logo */
+            }
+            .hero h1 {
+                font-size: 34px;
+            }
+             .hero p {
+                 font-size: 17px;
+             }
+            .hero {
+                padding: 80px 0 60px;
+            }
+             .features, .pricing {
+                padding: 60px 0;
+            }
+            .feature-card, .pricing-card {
+                padding: 25px;
+                border-radius: 14px;
+            }
+             .modal-content {
+                 padding: 30px;
+                 border-radius: 16px;
+             }
+             .modal-content h3 { font-size: 22px; }
+             .modal-content p { font-size: 15px; }
+             .modal-content input[type="email"], .modal-content button[type="submit"] {
+                 padding: 14px;
+                 font-size: 15px;
+                 border-radius: 8px;
+             }
+        }
+
+    </style>
+    <!-- ==== IMPORTANT: REPLACE WITH YOUR ACTUAL GOOGLE ADS ID ==== -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-YOUR_AW_CONVERSION_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // ==== IMPORTANT: REPLACE WITH YOUR ACTUAL GOOGLE ADS ID ====
+      gtag('config', 'AW-YOUR_AW_CONVERSION_ID');
+    </script>
+    <!-- Event snippet for Website traffic conversion page -->
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          // window.location = url; // Optional redirect
+        }
+      };
+      // ==== IMPORTANT: REPLACE WITH YOUR ACTUAL CONVERSION ID/LABEL ====
+      gtag('event', 'conversion', {
+          'send_to': 'AW-YOUR_AW_CONVERSION_ID/YOUR_CONVERSION_LABEL',
+          'event_callback': callback
+      });
+      console.log("gtag_report_conversion called"); // For debugging
+      return false;
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">finetuner</div>
+                <div class="domain">finetuner.org</div>
+            </div>
+            <!-- Add Nav Links Here Later if needed -->
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Stop Guessing. Start Optimizing.<br>Automatically Tune Your AI Prompts.</h1>
+            <p>Finetuner plugs into your AI SaaS, analyzes user engagement (likes, dislikes, edits, regenerations), and automatically surfaces better prompts to maximize positive interactions and reduce friction.</p>
+             <a href="#pricing" class="cta-button-hero">View Plans & Get Early Access</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>How Finetuner Boosts Your AI's Engagement</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Automated Prompt Discovery</h3>
+                    <p>Analyze user signals to find prompt variations proven to increase positive engagement & reduce regeneration requests.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Identify Winning Patterns</h3>
+                    <p>Pinpoint specific keywords, tones, formats, or structures that resonate best with your users for higher quality outputs.</p>
+                </div>
+                 <div class="feature-card">
+                    <h3>Data-Driven Ranking</h3>
+                    <p>See exactly which prompts perform best (and worst) based on real user interaction data (CSV upload in MVP).</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Flag Problematic Prompts</h3>
+                    <p>Instantly identify prompts causing user frustration (high dislikes/edits) so you can fix them before they cause churn.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Engagement A/B Testing Insights</h3>
+                    <p>Get data to validate which prompts users actually prefer, removing guesswork from prompt engineering.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Seamless Integration Path</h3>
+                    <p>Easily export optimized prompt configurations (CSV/JSON in MVP) to deploy improvements back into your app quickly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Find the Right Fit for Your Stage</h2>
+            <div class="pricing-grid">
+                <!-- Tier 1: Tuner -->
+                <div class="pricing-card">
+                    <h3>Tuner</h3>
+                    <div class="price">$49<span>/month</span></div>
+                    <p style="color: var(--text-secondary); font-size: 15px; margin-bottom: 25px;">Essential insights from your engagement data.</p>
+                    <ul>
+                        <li>Manual CSV Upload (PromptID, Success/Failure Counts)</li>
+                        <li>Engagement Score Calculation</li>
+                        <li>Ranked Prompt List View</li>
+                        <li>Top 3 / Bottom 3 Highlights</li>
+                        <li>Basic Dashboard</li>
+                        <li>Export Ranked List (CSV/JSON)</li>
+                        <li>Community Support</li>
+                    </ul>
+                    <button class="cta-select-plan" data-tier="tuner" data-plan-name="Tuner">Get Early Access</button>
+                </div>
+
+                <!-- Tier 2: Optimizer (Popular) -->
+                <div class="pricing-card popular">
+                     <div class="popular-badge">POPULAR</div>
+                    <h3>Optimizer</h3>
+                    <div class="price">$99<span>/month</span></div>
+                    <p style="color: var(--text-secondary); font-size: 15px; margin-bottom: 25px;">Automated suggestions & deeper analytics.</p>
+                    <ul>
+                        <li>Everything in Tuner, plus:</li>
+                        <li>**Automated Prompt Variant Suggestions**</li>
+                        <li>Performance Trend Tracking</li>
+                        <li>Basic A/B Test Result Comparison</li>
+                        <li>More Granular Signal Analysis (e.g., Regen Rate)</li>
+                        <li>API Access (Future)</li>
+                        <li>Standard Email Support</li>
+                    </ul>
+                    <button class="cta-select-plan" data-tier="optimizer" data-plan-name="Optimizer">Get Early Access</button>
+                </div>
+
+                <!-- Tier 3: Accelerator -->
+                <div class="pricing-card">
+                    <h3>Accelerator</h3>
+                    <div class="price">$199<span>/month</span></div>
+                    <p style="color: var(--text-secondary); font-size: 15px; margin-bottom: 25px;">Scale optimization with advanced controls.</p>
+                    <ul>
+                        <li>Everything in Optimizer, plus:</li>
+                        <li>**Direct API Integration for Data Feed**</li>
+                        <li>User Segment Analysis</li>
+                        <li>Custom Engagement Signal Tracking</li>
+                        <li>Automated Alerting for Poor Prompts</li>
+                        <li>Team Collaboration Features</li>
+                        <li>Priority Support & Onboarding</li>
+                    </ul>
+                    <button class="cta-select-plan" data-tier="accelerator" data-plan-name="Accelerator">Get Early Access</button>
+                </div>
+            </div>
+             <p style="text-align: center; margin-top: 30px; color: var(--text-secondary); font-size: 14px;">Early access pricing subject to change upon full launch.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 <span class="footer-domain">finetuner.org</span> | Stop Guessing, Start Optimizing.</p>
+            <!-- Add Privacy Policy / Terms links here eventually -->
+        </div>
+    </footer>
+
+    <!-- Signup Modal -->
+    <div class="modal-overlay" id="signup-modal">
+        <div class="modal-content">
+            <button class="close-button" id="close-modal-button">×</button>
+
+            <div id="modal-form-container">
+                 <h3 id="modal-title">Join the Finetuner Early Access</h3>
+                 <p id="modal-subtitle">Be the first to leverage data-driven prompt optimization. Enter your email below.</p>
+                 <form id="modal-signup-form">
+                    <input type="email" id="modal-email" placeholder="Your work email" required>
+                    <input type="hidden" id="chosen-tier" name="pricing">
+                    <button type="submit">Request Early Access</button>
+                 </form>
+                  <p style="font-size: 13px; margin-top: 20px; color: var(--text-secondary);">We'll notify you when your selected tier is ready. No spam, ever.</p>
+             </div>
+
+             <div id="modal-success-message">
+                 <!-- SVG Checkmark -->
+                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="var(--success)" stroke-width="2">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.5 12.5L11 15L15.5 10.5" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+                 <h4>You're on the list!</h4>
+                 <p>Thanks for your interest in Finetuner! We'll email you with updates and early access details for your chosen plan.</p>
+                 <p style="font-size: 14px;">Get ready to optimize!</p>
+             </div>
+        </div>
+    </div>
+
+
+    <script>
+        const modalOverlay = document.getElementById('signup-modal');
+        const modalContent = modalOverlay.querySelector('.modal-content');
+        const modalTitle = document.getElementById('modal-title');
+        const modalSubtitle = document.getElementById('modal-subtitle');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const modalFormContainer = document.getElementById('modal-form-container');
+        const modalSuccessMessage = document.getElementById('modal-success-message');
+        const modalSignupForm = document.getElementById('modal-signup-form');
+        const modalEmailInput = document.getElementById('modal-email');
+        const chosenTierInput = document.getElementById('chosen-tier');
+        const selectPlanButtons = document.querySelectorAll('.cta-select-plan');
+
+        // Function to open the modal
+        function openModal(tier, planName) {
+            chosenTierInput.value = tier;
+            modalTitle.textContent = `Request Early Access: ${planName}`;
+            modalSubtitle.textContent = `Enter your email to join the waitlist for the Finetuner ${planName} plan.`
+            modalFormContainer.style.display = 'block';
+            modalSuccessMessage.style.display = 'none';
+            modalEmailInput.value = '';
+            modalOverlay.style.display = 'flex';
+            // Add class for transition
+            setTimeout(() => modalOverlay.classList.add('visible'), 10); // Small delay for transition
+            setTimeout(() => modalContent.style.transform = 'scale(1)', 10); // Scale in content
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modalContent.style.transform = 'scale(0.95)'; // Scale out content
+            modalOverlay.classList.remove('visible');
+             // Wait for transition before hiding
+            setTimeout(() => {
+                 modalOverlay.style.display = 'none';
+            }, 300); // Match transition duration
+        }
+
+        // Add event listeners to all "Get Early Access" buttons
+        selectPlanButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent any default anchor behavior if used
+                const tier = this.getAttribute('data-tier');
+                const planName = this.getAttribute('data-plan-name');
+                openModal(tier, planName);
+            });
+        });
+
+        // Add event listener to close button
+        closeModalButton.addEventListener('click', closeModal);
+
+        // Add event listener to modal overlay (close when clicking outside content)
+        modalOverlay.addEventListener('click', function(event) {
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modalOverlay.style.display === 'flex') {
+                closeModal();
+            }
+        });
+
+        // Add event listener for form submission
+        modalSignupForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const email = modalEmailInput.value;
+            const tier = chosenTierInput.value;
+
+            if (!email || !tier) return; // Basic validation
+
+            // ==== IMPORTANT: REPLACE WITH YOUR GOOGLE APPS SCRIPT URL ====
+            // Create a Google Apps Script that accepts 'email' and 'tier' parameters via GET
+            // Example Script:
+            // function doGet(e) {
+            //   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+            //   var email = e.parameter.email;
+            //   var tier = e.parameter.tier;
+            //   sheet.appendRow([new Date(), email, tier]);
+            //   return ContentService.createTextOutput("Success"); // Optional response
+            // }
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxlMZxJmAmm90HGKg6AJxEeB8xOP83Dyq4rUHnCD8aubV1NzPqb1ZlSbjzmBAnO63r2/exec'; // <--- REPLACE THIS!!!
+            // ==============================================================
+
+            if (scriptURL === 'YOUR_SCRIPT_URL_HERE') {
+                 console.warn("Google Apps Script URL not replaced! Submission will fail.");
+                 // Simulate success for testing UI without actual submission
+                 modalFormContainer.style.display = 'none';
+                 modalSuccessMessage.style.display = 'block';
+                 // You might still call gtag here for testing UI flow, but it won't represent real signups yet.
+                 // gtag_report_conversion();
+                 return; // Stop if URL not set
+            }
+
+
+            const urlWithParams = `${scriptURL}?contact=${encodeURIComponent(email)}&pricing=${encodeURIComponent(tier)}`;
+
+            // Show loading state on button (optional)
+            const submitButton = modalSignupForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            // --- Send data using fetch ---
+            fetch(urlWithParams, { method: 'GET', mode: 'no-cors'}) // Use no-cors for simple GET requests to Apps Script
+                .then(response => {
+                    console.log('Submission initiated (no-cors means no response content)');
+                    // Assume success for UI purposes with no-cors
+                    modalFormContainer.style.display = 'none';
+                    modalSuccessMessage.style.display = 'block';
+                    // Report conversion to Google Ads ONLY on successful initiation
+                    gtag_report_conversion();
+                })
+                .catch(error => {
+                    console.error('Error initiating submission!', error.message);
+                    // Handle error: Maybe show an error message to the user
+                    // For simplicity here, we'll revert the button but keep the form
+                    alert('Submission failed. Please try again.'); // Basic error feedback
+                })
+                .finally(() => {
+                    // Revert button state whether success or error in catch block
+                     if (modalFormContainer.style.display !== 'none') { // Only revert if success didn't hide the form
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    }
+                });
+        });
+
+        // Smooth scroll for hero CTA
+        const heroCta = document.querySelector('.cta-button-hero');
+        if (heroCta) {
+            heroCta.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pricingSection = document.querySelector('#pricing');
+                if (pricingSection) {
+                    pricingSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start' // Align top of pricing section to top of viewport
+                    });
+                }
+            });
+        }
+
+    </script>
+
+</body>
+</html>
