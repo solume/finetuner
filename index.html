@@ -724,17 +724,19 @@
     function gtag_report_conversion(url) {
       var callback = function () {
         if (typeof(url) != 'undefined') {
-          // Optional: Redirect after conversion if needed
+          window.location = url;
         }
       };
       gtag('event', 'conversion', {
-          'send_to': 'AW-970082336/043PCI3MocwBEKCQyc4D', /* Finetuner Waitlist Signup Conversion Action */
+          'send_to': 'AW-970082336/FQHpCJXF2b8aEKCQyc4D',
+          'value': 1.0,
+          'currency': 'EUR',
           'event_callback': callback
       });
-      console.log("gtag_report_conversion called for initial email submission"); // Debugging
       return false;
     }
     </script>
+
 </head>
 <body>
     <header>
