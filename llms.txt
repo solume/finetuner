@@ -10,7 +10,7 @@
 - Real-usage feedback loops don't exist. Quality is not yet measurable or operational. Agent failure taxonomy is open. Quality metric definitions are ambiguous.
 - Standards for data quality and reproducibility across large-scale agent gyms — coverage metrics, invariance checks, trace audits — do not yet exist. Keeping training signals faithful, stable, and scalable is open.
 - Session-level good, bad, and degraded session primitives, alerting, and triage for making quality measurable and operational at the training loop.
-- No standardized way to compare rubric methodologies across domains. Reward-signal iteration is measured in days of manual experimentation — a direct stated bottleneck. Reward hacking is a recurring, ongoing failure mode that needs dedicated detection, not one-off mitigation. Human-feedback-data quality assessment is still manual and ad-hoc.
+- No standardized way to compare rubric methodologies across domains. Reward-signal iteration is measured in days of manual experimentation. Reward hacking is a recurring, ongoing failure mode that needs dedicated detection, not one-off mitigation. Human-feedback-data quality assessment is still manual and ad-hoc.
 - Reward hacking, mode collapse, and exploitable loopholes.
 - Reward design, trajectory evaluation, interruption handling, observation and state design, tool and action interface design, and curriculum learning are open problems. Long-horizon agent trajectory evaluation lacks an industry-standard method. Agent trajectory and long-horizon eval is an open research problem.
 
