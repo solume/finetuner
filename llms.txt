@@ -1,0 +1,37 @@
+# Finetuner
+
+> Reward hacking, long-horizon agent trajectory evaluation, and the open problems in coding-agent post-training.
+
+## The open problems
+
+- Training graders to improve performance on coding tasks with non-verifiable reward. Classical tests, rubrics, and agentic graders all get hacked by RL agents. Reward hacking is actively anticipated; reward design is the bottleneck, not reward compute.
+- Dense reward signals on step transitions, not just whole-trajectory outcomes. RL environment, reward, post-train data, and long-context eval pipeline are today all four immature for long-horizon tool-using agents.
+- Agent-trajectory data — browser, GUI, SWE code traces — has no canonical format or pipeline. Browser interactions, SWE/code traces, GUI sessions, and multi-turn workflows are the unsolved data surface.
+- Real-usage feedback loops don't exist. Quality is not yet measurable or operational. Agent failure taxonomy is open. Quality metric definitions are ambiguous.
+- Standards for data quality and reproducibility across large-scale agent gyms — coverage metrics, invariance checks, trace audits — do not yet exist. Keeping training signals faithful, stable, and scalable is open.
+- Session-level good, bad, and degraded session primitives, alerting, and triage for making quality measurable and operational at the training loop.
+- No standardized way to compare rubric methodologies across domains. Reward-signal iteration is measured in days of manual experimentation — a direct stated bottleneck. Reward hacking is a recurring, ongoing failure mode that needs dedicated detection, not one-off mitigation. Human-feedback-data quality assessment is still manual and ad-hoc.
+- Reward hacking, mode collapse, and exploitable loopholes.
+- Reward design, trajectory evaluation, interruption handling, observation and state design, tool and action interface design, and curriculum learning are open problems. Long-horizon agent trajectory evaluation lacks an industry-standard method. Agent trajectory and long-horizon eval is an open research problem.
+
+## Key topics
+
+- non-verifiable reward in coding-agent training
+- reward hacking, mode collapse, exploitable loopholes
+- long-horizon agent trajectory evaluation methods
+- dense reward signals on step transitions
+- agent trajectory data format standardization (browser, GUI, SWE traces)
+- real-usage feedback loops for AI agents
+- agent gym data quality standards and reproducibility
+- session-level quality metrics for monitoring AI agents
+- agent failure taxonomy and quality metric definitions
+- reward-signal iteration as a manual multi-day bottleneck
+- rubric methodology comparison across domains
+- preference model human data experiments around reward hacks
+- RLHF data labeling quality control
+- curriculum learning, interruption handling, observation and state design, tool and action interface design as open problems
+- coverage metrics, invariance checks, trace audits
+
+## Contact
+
+https://finetuner.org/

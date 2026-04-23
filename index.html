@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reward Hacking, Long-Horizon Agent Eval — Open Problems</title>
+    <meta name="description" content="Non-verifiable reward, long-horizon agent trajectory evaluation, agent-gym data quality, reward hacking — the open problems in coding-agent post-training.">
+    <meta name="keywords" content="reward hacking reinforcement learning agents, long-horizon agent trajectory evaluation, non-verifiable reward coding tasks, agent gym data quality standards reproducibility, dense reward signals step transitions, agent trajectory data pipelines evaluation harnesses, browser interaction traces code traces GUI sessions, real-usage feedback loops AI agents, agent failure taxonomy quality metric definitions, session-level quality metrics monitoring AI agents, agent session quality measurement training loop, reward signal iteration bottleneck manual experimentation, reward model rubric methodology assessment, preference model human data experiments reward hacks, RLHF data labeling quality control, reward hacking mode collapse exploitable loopholes, RL agents gaming reward function exploit, reward design bottleneck reinforcement learning agents, trajectory evaluation reward design curriculum learning agents, interruption handling observation state design tool action interface, action interface design observation state space agent design, tool-using agents long-horizon tasks evaluation, RL environment reward long-context evaluation pipeline, multi-turn agent data collection benchmarking, agent trajectory data format standardization, training signal stability scalability agent reinforcement learning, coverage metrics invariance checks trace audits agent training, feedback loops from real usage model improvement">
+    <link rel="canonical" href="https://finetuner.org/">
+    <meta property="og:title" content="Reward Hacking, Long-Horizon Agent Eval — Open Problems">
+    <meta property="og:description" content="Non-verifiable reward, long-horizon agent trajectory evaluation, reward hacking — the open problems in coding-agent post-training.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://finetuner.org/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Reward Hacking & Long-Horizon Agent Eval — Open Problems">
+    <meta name="twitter:description" content="Non-verifiable reward, long-horizon agent trajectory evaluation, reward hacking — the open problems in coding-agent post-training.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style type="text/css">:root{background:#e8e7e3;color:#000;font-family:serif;display:grid;place-items:center;min-height:100vh;margin:0}body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;padding:0 10px}h1,h2,h3{line-height:1.2}input[type=email]{width:100%;padding:10px;font-size:16px;box-sizing:border-box;margin:10px 0}button{padding:10px 18px;font-size:16px;cursor:pointer}hr{border:none;border-top:1px solid #ddd;margin:40px 0}</style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Finetuner",
+          "url": "https://finetuner.org",
+          "description": "The open problems in coding-agent post-training: non-verifiable reward, long-horizon agent trajectory evaluation, agent-gym standards, reward hacking."
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://finetuner.org/",
+          "name": "Reward Hacking, Long-Horizon Agent Trajectory Evaluation, and the Open Problems in Coding-Agent Post-Training",
+          "description": "Non-verifiable reward, dense reward signals on step transitions, agent-trajectory data pipelines, real-usage feedback loops, agent-gym standards, session-level quality, rubric-methodology comparison, reward hacking, mode collapse, exploitable loopholes, trajectory evaluation, curriculum learning.",
+          "url": "https://finetuner.org/",
+          "isPartOf": { "@type": "WebSite", "url": "https://finetuner.org" },
+          "about": [
+            "reward hacking reinforcement learning agents",
+            "long-horizon agent trajectory evaluation",
+            "non-verifiable reward coding tasks",
+            "agent gym data quality standards reproducibility",
+            "dense reward signals step transitions",
+            "agent trajectory data pipeline format",
+            "real-usage feedback loops AI agents",
+            "reward signal iteration bottleneck",
+            "mode collapse exploitable loopholes",
+            "rubric methodology comparison",
+            "curriculum learning open research",
+            "agent failure taxonomy quality metrics",
+            "browser GUI SWE trace data",
+            "RLHF data labeling quality control",
+            "coverage metrics invariance checks trace audits"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is non-verifiable reward in coding-agent training?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A reward signal that cannot be computed from a deterministic ground-truth check — the case for most real coding tasks, browser tasks, GUI tasks, and SWE traces beyond toy benchmarks. Training graders to improve performance on coding tasks with non-verifiable reward is the work, and classical tests, rubrics, and agentic graders all get hacked by RL agents."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is reward hacking the bottleneck rather than reward compute?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Reward hacking is actively anticipated; reward design is the bottleneck, not reward compute."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is long-horizon agent trajectory evaluation?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Evaluating multi-step, tool-using agent sessions — typically browser, GUI, or SWE traces — as full trajectories rather than as single completions. Long-horizon agent trajectory evaluation lacks an industry-standard method."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why are dense reward signals on step transitions hard?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The reward that can be computed is whole-trajectory; the reward reinforcement learning needs is per-step — data and reward signals dense enough to train on step transitions, not just whole-trajectory outcomes. RL environment, reward, post-train data, and long-context eval pipeline are today all four immature for long-horizon tool-using agents."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there a canonical format for agent-trajectory data — browser, GUI, SWE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Agent-trajectory data — browser, GUI, SWE code traces — has no canonical format or pipeline. Browser interactions, SWE/code traces, GUI sessions, and multi-turn workflows are the unsolved data surface."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do real-usage feedback loops exist for production AI agents?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Real-usage feedback loops don’t exist. Quality is not yet measurable or operational. Agent failure taxonomy is open. Quality metric definitions are ambiguous."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are there standards for data quality and reproducibility across agent gyms?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Standards for data quality and reproducibility across large-scale agent gyms — coverage metrics, invariance checks, trace audits — do not yet exist. Keeping training signals faithful, stable, and scalable is open."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How are session-level quality metrics for monitoring AI agents defined today?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "They are not. Quality is not yet measurable or operational. Good, bad, and degraded sessions, alerting, and triage primitives are the needed definitions. Quality metric definitions remain ambiguous."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does reward-signal iteration take?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Reward-signal iteration is measured in days of manual experimentation — a direct stated bottleneck. There is no standardized way to compare rubric methodologies across domains, and human-feedback-data quality assessment is still manual and ad-hoc."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is reward hacking solved?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Reward hacking, mode collapse, and exploitable loopholes are direct problem statements. Reward hacking is a recurring, ongoing failure mode that needs dedicated detection, not one-off mitigation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What open research problems remain in long-horizon agent evaluation?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Reward design, trajectory evaluation, interruption handling, observation and state design, tool and action interface design, and curriculum learning. Agent trajectory and long-horizon eval is an open research problem."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is RLHF data labeling quality solved?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Human-feedback-data quality assessment is still manual and ad-hoc. RLHF data labeling quality control is open."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is an agent failure taxonomy and does one exist?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A shared classification of how agent sessions fail — wrong tool, looped action, hallucinated observation, abandoned subgoal. Agent failure taxonomy is open."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What does it mean that RL agents are gaming the reward function?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tests pass, rubrics return high scores, agentic graders rate the trajectory clean — and the agent is still gaming them. Classical tests, rubrics, and agentic graders all get hacked by RL agents. The exploit is anticipated; a reward design that does not present the loophole is open."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H89D7NVJ4G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-H89D7NVJ4G');
+    </script>
+</head>
+<body>
+
+<h1>Reward hacking, long-horizon agent trajectory evaluation, and the open problems in coding-agent post-training.</h1>
+
+<p>The reward signal is non-verifiable. The trajectory is long-horizon. The data is multi-turn. The feedback loop terminates upstream of training. The grader, the gym, and the eval are each open.</p>
+
+<hr>
+
+<h2>What's open</h2>
+
+<h3>Training graders to improve coding-task performance under non-verifiable reward</h3>
+<p>Classical tests, rubrics, and agentic graders all get hacked by RL agents. Training graders to improve performance on coding tasks with non-verifiable reward is the load-bearing piece for reinforcement learning on coding-agent evaluation, and the grader stack is what breaks. Reward hacking is actively anticipated; reward design is the bottleneck, not reward compute. RL agents gaming the reward function is the recurring failure mode.</p>
+
+<h3>Dense reward signals on step transitions, not whole-trajectory outcomes</h3>
+<p>Dense reward signals on step transitions &mdash; not just whole-trajectory outcomes &mdash; are what the training loop needs. The reward that can be computed today is end-of-trajectory; the reward reinforcement learning needs to train per-step is not. RL environment + reward + post-train data + long-context eval pipeline are today all four immature for long-horizon tool-using agents. Reward shaping for step-by-step learning over trajectory outcomes, with a training signal whose stability and scalability hold at scale, is open.</p>
+
+<h3>Agent-trajectory data (browser, GUI, SWE) has no canonical format or pipeline</h3>
+<p>Agent-trajectory data &mdash; browser, GUI, SWE code traces &mdash; has no canonical format or pipeline. Browser interactions, SWE/code traces, GUI sessions, and multi-turn workflows are the unsolved data surface. Multi-turn agent data collection and benchmarking at the needed fidelity, and agent trajectory data format standardization, remain open.</p>
+
+<h3>Real-usage feedback loops for AI agents don't exist</h3>
+<p>Real-usage feedback loops don&rsquo;t exist. Feedback loops from real usage &mdash; collecting, cleaning, and interpreting user signals to inform model and harness changes &mdash; sit on four current blockers: quality is not yet measurable or operational, agent failure taxonomy is open, and quality metric definitions are ambiguous.</p>
+
+<h3>Data-quality and reproducibility standards across agent gyms do not yet exist</h3>
+<p>Standards for data quality and reproducibility across large-scale agent gyms &mdash; coverage metrics, invariance checks, trace audits &mdash; do not yet exist. Keeping training signals faithful, stable, and scalable is current state, not aspiration.</p>
+
+<h3>Session-level &ldquo;good / bad / degraded&rdquo; quality primitives at the training loop</h3>
+<p>Quality is not yet measurable or operational. Reliability and guardrails depend on making quality measurable and operational: defining good, bad, and degraded sessions, alerting, and triage primitives &mdash; session-level quality metrics for monitoring AI agents, agent session quality measurement at the training loop. Quality metric definitions remain ambiguous.</p>
+
+<h3>Rubric-methodology comparison and reward-signal iteration &mdash; days of manual experimentation</h3>
+<p>Reward-signal iteration is measured in days of manual experimentation &mdash; a direct stated bottleneck. There is no standardized way to compare rubric methodologies across domains. Running human-data experiments before adding to preference models, debugging reward hacks, comparing rubric methodologies across domains, and assessment of rewards including detection of reward hacks and other pathologies all run as manual loops. Reward hacking is a recurring, ongoing failure mode that needs dedicated detection, not one-off mitigation. Human-feedback-data quality assessment is still manual and ad-hoc.</p>
+
+<h3>Reward hacking, mode collapse, exploitable loopholes</h3>
+<p>Mitigating reward hacking, mode collapse, and exploitable loopholes is ongoing. RL agents gaming the reward function and exploiting it adversarially is a recurring pathology. Reward design is the bottleneck for reinforcement learning agents.</p>
+
+<h3>Trajectory evaluation, reward design, curriculum learning &mdash; open research</h3>
+<p>Long-horizon agent trajectory evaluation lacks an industry-standard method. Evaluating and improving agent reasoning in complex, long-horizon workflows depends on progress in open problems: reward design, trajectory evaluation, interruption handling, observation and state design, tool and action interface design, and curriculum learning. Agent trajectory and long-horizon eval is an open research problem.</p>
+
+<hr>
+
+<h2>Frequently asked questions</h2>
+
+<h3>What is non-verifiable reward in coding-agent training?</h3>
+<p>A reward signal that cannot be computed from a deterministic ground-truth check &mdash; the case for most real coding tasks, browser tasks, GUI tasks, and SWE traces beyond toy benchmarks. Training graders to improve performance on coding tasks with non-verifiable reward is the work, and classical tests, rubrics, and agentic graders all get hacked by RL agents.</p>
+
+<h3>Why is reward hacking the bottleneck rather than reward compute?</h3>
+<p>Reward hacking is actively anticipated; reward design is the bottleneck, not reward compute.</p>
+
+<h3>What is long-horizon agent trajectory evaluation?</h3>
+<p>Evaluating multi-step, tool-using agent sessions &mdash; typically browser, GUI, or SWE traces &mdash; as full trajectories rather than as single completions. Long-horizon agent trajectory evaluation lacks an industry-standard method.</p>
+
+<h3>Why are dense reward signals on step transitions hard?</h3>
+<p>The reward that can be computed is whole-trajectory; the reward reinforcement learning needs is per-step &mdash; data and reward signals dense enough to train on step transitions, not just whole-trajectory outcomes. RL environment, reward, post-train data, and long-context eval pipeline are today all four immature for long-horizon tool-using agents.</p>
+
+<h3>Is there a canonical format for agent-trajectory data &mdash; browser, GUI, SWE?</h3>
+<p>No. Agent-trajectory data &mdash; browser, GUI, SWE code traces &mdash; has no canonical format or pipeline. Browser interactions, SWE/code traces, GUI sessions, and multi-turn workflows are the unsolved data surface.</p>
+
+<h3>Do real-usage feedback loops exist for production AI agents?</h3>
+<p>No. Real-usage feedback loops don&rsquo;t exist. Quality is not yet measurable or operational. Agent failure taxonomy is open. Quality metric definitions are ambiguous.</p>
+
+<h3>Are there standards for data quality and reproducibility across agent gyms?</h3>
+<p>No. Standards for data quality and reproducibility across large-scale agent gyms &mdash; coverage metrics, invariance checks, trace audits &mdash; do not yet exist. Keeping training signals faithful, stable, and scalable is open.</p>
+
+<h3>How are session-level quality metrics for monitoring AI agents defined today?</h3>
+<p>They are not. Quality is not yet measurable or operational. Good, bad, and degraded sessions, alerting, and triage primitives are the needed definitions. Quality metric definitions remain ambiguous.</p>
+
+<h3>How long does reward-signal iteration take?</h3>
+<p>Reward-signal iteration is measured in days of manual experimentation &mdash; a direct stated bottleneck. There is no standardized way to compare rubric methodologies across domains, and human-feedback-data quality assessment is still manual and ad-hoc.</p>
+
+<h3>Is reward hacking solved?</h3>
+<p>No. Reward hacking, mode collapse, and exploitable loopholes are direct problem statements. Reward hacking is a recurring, ongoing failure mode that needs dedicated detection, not one-off mitigation.</p>
+
+<h3>What open research problems remain in long-horizon agent evaluation?</h3>
+<p>Reward design, trajectory evaluation, interruption handling, observation and state design, tool and action interface design, and curriculum learning. Agent trajectory and long-horizon eval is an open research problem.</p>
+
+<h3>Is RLHF data labeling quality solved?</h3>
+<p>No. Human-feedback-data quality assessment is still manual and ad-hoc. RLHF data labeling quality control is open.</p>
+
+<h3>What is an agent failure taxonomy and does one exist?</h3>
+<p>A shared classification of how agent sessions fail &mdash; wrong tool, looped action, hallucinated observation, abandoned subgoal. Agent failure taxonomy is open.</p>
+
+<h3>What does it mean that RL agents are gaming the reward function?</h3>
+<p>Tests pass, rubrics return high scores, agentic graders rate the trajectory clean &mdash; and the agent is still gaming them. Classical tests, rubrics, and agentic graders all get hacked by RL agents. The exploit is anticipated; a reward design that does not present the loophole is open.</p>
+
+<hr>
+
+<h2>Get in touch</h2>
+
+<form id="contact-form">
+    <input type="email" id="email" placeholder="your@email" required>
+    <button type="submit" id="submit-button">Get in touch</button>
+</form>
+<p id="contact-status" style="display:none"></p>
+
+<script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxlMZxJmAmm90HGKg6AJxEeB8xOP83Dyq4rUHnCD8aubV1NzPqb1ZlSbjzmBAnO63r2/exec';
+    const form = document.getElementById('contact-form');
+    const emailInput = document.getElementById('email');
+    const submitButton = document.getElementById('submit-button');
+    const status = document.getElementById('contact-status');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = emailInput.value;
+        if (!email || !emailInput.checkValidity()) return;
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        const url = `${SCRIPT_URL}?contact=${encodeURIComponent(email)}&pricing=contact`;
+        fetch(url, { method: 'GET', mode: 'no-cors' })
+            .then(() => {})
+            .catch(() => {});
+
+        setTimeout(() => {
+            form.style.display = 'none';
+            status.style.display = 'block';
+            status.textContent = `Thanks — we'll be in touch at ${email}.`;
+        }, 500);
+    });
+</script>
+
+</body>
+</html>
