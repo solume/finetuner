@@ -187,48 +187,72 @@
 
 <p>The reward signal is non-verifiable. The trajectory is long-horizon. The data is multi-turn. The feedback loop terminates upstream of training. The grader, the gym, and the eval are each open.</p>
 
-<p><strong>Agent turn duration (99.9th &#37;ile).</strong></p>
-<svg viewBox="0 0 650 320" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="99.9th-percentile Claude Code turn duration: historical data Sep 2025 through Feb 2026, with a rough projection to 2031.">
-  <g stroke="#b7b4ab" stroke-width="1" stroke-dasharray="2 3">
-    <line x1="60" y1="40" x2="610" y2="40"/>
-    <line x1="60" y1="97.5" x2="610" y2="97.5"/>
-    <line x1="60" y1="155" x2="610" y2="155"/>
-    <line x1="60" y1="212.5" x2="610" y2="212.5"/>
-    <line x1="60" y1="250.83" x2="610" y2="250.83"/>
+<svg viewBox="0 0 650 295" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Claude Code avg turn duration on log scale, Sep 2025 through Feb 2026 historical data with Finetuner projection to 2031.">
+  <g stroke="#cfccc3" stroke-width="0.5" stroke-dasharray="1 2">
+    <line x1="60" y1="246.91" x2="610" y2="246.91"/>
+    <line x1="60" y1="233.42" x2="610" y2="233.42"/>
+    <line x1="60" y1="223.83" x2="610" y2="223.83"/>
+    <line x1="60" y1="216.40" x2="610" y2="216.40"/>
+    <line x1="60" y1="210.33" x2="610" y2="210.33"/>
+    <line x1="60" y1="205.20" x2="610" y2="205.20"/>
+    <line x1="60" y1="200.76" x2="610" y2="200.76"/>
+    <line x1="60" y1="196.84" x2="610" y2="196.84"/>
+    <line x1="60" y1="170.25" x2="610" y2="170.25"/>
+    <line x1="60" y1="156.75" x2="610" y2="156.75"/>
+    <line x1="60" y1="147.16" x2="610" y2="147.16"/>
+    <line x1="60" y1="139.74" x2="610" y2="139.74"/>
+    <line x1="60" y1="133.67" x2="610" y2="133.67"/>
+    <line x1="60" y1="128.54" x2="610" y2="128.54"/>
+    <line x1="60" y1="124.09" x2="610" y2="124.09"/>
+    <line x1="60" y1="120.17" x2="610" y2="120.17"/>
+    <line x1="60" y1="93.58" x2="610" y2="93.58"/>
+    <line x1="60" y1="80.09" x2="610" y2="80.09"/>
+    <line x1="60" y1="70.49" x2="610" y2="70.49"/>
+    <line x1="60" y1="63.06" x2="610" y2="63.06"/>
+    <line x1="60" y1="57.00" x2="610" y2="57.00"/>
+    <line x1="60" y1="51.86" x2="610" y2="51.86"/>
+    <line x1="60" y1="47.42" x2="610" y2="47.42"/>
+    <line x1="60" y1="43.50" x2="610" y2="43.50"/>
   </g>
-  <line x1="60" y1="270" x2="610" y2="270" stroke="#666" stroke-width="1"/>
+  <g stroke="#888" stroke-width="1" stroke-dasharray="5 4">
+    <line x1="60" y1="40" x2="610" y2="40"/>
+    <line x1="60" y1="116.67" x2="610" y2="116.67"/>
+    <line x1="60" y1="193.33" x2="610" y2="193.33"/>
+    <line x1="60" y1="270" x2="610" y2="270"/>
+  </g>
   <g font-family="serif" font-size="11" fill="#666" text-anchor="end">
-    <text x="54" y="44">4d</text>
-    <text x="54" y="101">3d</text>
-    <text x="54" y="159">2d</text>
-    <text x="54" y="216">1d</text>
-    <text x="54" y="274">0m</text>
+    <text x="54" y="44">10,000m</text>
+    <text x="54" y="120">1,000m</text>
+    <text x="54" y="197">100m</text>
+    <text x="54" y="274">10m</text>
   </g>
   <g font-family="serif" font-size="10" fill="#999" text-anchor="start">
-    <text x="614" y="254">8h</text>
+    <text x="614" y="214">1h</text>
+    <text x="614" y="144">8h</text>
+    <text x="614" y="108">1d</text>
   </g>
-  <polyline points="60,269.12 67.97,269.04 75.94,268.68 83.91,268.48 91.88,268.16 99.86,268.32" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="60,243.75 67.97,240.85 75.94,230.23 83.91,225.54 91.88,219.17 99.86,222.21" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
   <g fill="#000">
-    <circle cx="60" cy="269.12" r="2.6"/>
-    <circle cx="67.97" cy="269.04" r="2.6"/>
-    <circle cx="75.94" cy="268.68" r="2.6"/>
-    <circle cx="83.91" cy="268.48" r="2.6"/>
-    <circle cx="91.88" cy="268.16" r="2.6"/>
-    <circle cx="99.86" cy="268.32" r="2.6"/>
+    <circle cx="60" cy="243.75" r="2.6"/>
+    <circle cx="67.97" cy="240.85" r="2.6"/>
+    <circle cx="75.94" cy="230.23" r="2.6"/>
+    <circle cx="83.91" cy="225.54" r="2.6"/>
+    <circle cx="91.88" cy="219.17" r="2.6"/>
+    <circle cx="99.86" cy="222.21" r="2.6"/>
   </g>
-  <polyline points="99.86,268.32 135.72,267.01 179.57,264.01 227.39,258.82 275.22,250.83 323.04,241.25 370.87,226.08 418.70,206.11 466.52,174.17 514.35,126.25 562.17,70.35 610,68.75" fill="none" stroke="#000" stroke-width="1.8" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="99.86,222.21 135.72,202.89 179.57,179.81 227.39,159.02 275.22,141.08 323.04,127.58 370.87,113.47 418.70,100.99 466.52,87.49 514.35,73.98 562.17,63.05 610,62.78" fill="none" stroke="#000" stroke-width="1.8" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round"/>
   <g fill="#e8e7e3" stroke="#000" stroke-width="1.5">
-    <circle cx="135.72" cy="267.01" r="2.6"/>
-    <circle cx="179.57" cy="264.01" r="2.6"/>
-    <circle cx="227.39" cy="258.82" r="2.6"/>
-    <circle cx="275.22" cy="250.83" r="2.6"/>
-    <circle cx="323.04" cy="241.25" r="2.6"/>
-    <circle cx="370.87" cy="226.08" r="2.6"/>
-    <circle cx="418.70" cy="206.11" r="2.6"/>
-    <circle cx="466.52" cy="174.17" r="2.6"/>
-    <circle cx="514.35" cy="126.25" r="2.6"/>
-    <circle cx="562.17" cy="70.35" r="2.6"/>
-    <circle cx="610" cy="68.75" r="2.6"/>
+    <circle cx="135.72" cy="202.89" r="2.6"/>
+    <circle cx="179.57" cy="179.81" r="2.6"/>
+    <circle cx="227.39" cy="159.02" r="2.6"/>
+    <circle cx="275.22" cy="141.08" r="2.6"/>
+    <circle cx="323.04" cy="127.58" r="2.6"/>
+    <circle cx="370.87" cy="113.47" r="2.6"/>
+    <circle cx="418.70" cy="100.99" r="2.6"/>
+    <circle cx="466.52" cy="87.49" r="2.6"/>
+    <circle cx="514.35" cy="73.98" r="2.6"/>
+    <circle cx="562.17" cy="63.05" r="2.6"/>
+    <circle cx="610" cy="62.78" r="2.6"/>
   </g>
   <g font-family="serif" font-size="10" fill="#666" text-anchor="middle">
     <text x="60" y="288">Sep '25</text>
@@ -240,7 +264,7 @@
     <text x="610" y="288">mid '31</text>
   </g>
 </svg>
-<p><small>99.9th-percentile Claude Code turn duration: historical data from <a href="https://www.anthropic.com/research/measuring-agent-autonomy">Anthropic</a> (Feb 2026), with a rough projection to 2031. Projection is a guess. The problems below compound as turns lengthen.</small></p>
+<p style="margin-top:0">Claude code avg turn duration (<a href="https://www.anthropic.com/research/measuring-agent-autonomy">Anthropic report</a>). Finetuner projection out to 2031, challenges with long-horizon agents will grow exponentially.</p>
 
 <hr>
 
