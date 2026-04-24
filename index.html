@@ -185,7 +185,7 @@
 
 <h1>Reward hacking, long-horizon agent trajectory evaluation, and the bottlenecks in coding-agent post-training.</h1>
 
-<p>The reward signal is non-verifiable. The trajectory is long-horizon. The data is multi-turn. The feedback loop terminates upstream of training. The grader, the gym, and the eval are each open.</p>
+<p>The reward signal is non-verifiable. The trajectory is long-horizon. The data is multi-turn. The feedback loop terminates upstream of training. The grader, the gym, and the eval are each open. The horizon continues to grow.</p>
 
 <svg viewBox="0 0 650 295" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Claude Code avg turn duration on log scale, Sep 2025 through Feb 2026 historical data with Finetuner projection to 2031.">
   <g stroke="#cfccc3" stroke-width="0.5" stroke-dasharray="1 2">
@@ -259,33 +259,33 @@
     <text x="610" y="288">mid '31</text>
   </g>
 </svg>
-<p style="margin-top:0">Claude code avg turn duration until Feb &rsquo;26 (<a href="https://www.anthropic.com/research/measuring-agent-autonomy">Anthropic report</a>). Finetuner projection out to 2031. Challenges with long-horizon agents will grow exponentially.</p>
+<p style="margin-top:0">Claude code avg turn duration until Feb &rsquo;26 (<a href="https://www.anthropic.com/research/measuring-agent-autonomy">Anthropic report</a>). Finetuner projection out to 2031. Challenges with long-horizon agents will grow exponentially. Longer horizons compound grader error.</p>
 
 <hr>
 
 <h3>Training graders to improve coding-task performance under non-verifiable reward</h3>
-<p>Classical tests, rubrics, and agentic graders all get hacked by RL agents. Training graders to improve performance on coding tasks with non-verifiable reward is the load-bearing piece for reinforcement learning on coding-agent evaluation, and the grader stack is what breaks. Reward hacking is actively anticipated; reward design is the bottleneck, not reward compute. RL agents gaming the reward function is the recurring failure mode.</p>
+<p>Classical tests, rubrics, and agentic graders all get hacked by RL agents. Training graders to improve performance on coding tasks with non-verifiable reward is the load-bearing piece for reinforcement learning on coding-agent evaluation, and the grader stack is what breaks. Reward hacking is actively anticipated; reward design is the bottleneck, not reward compute. RL agents gaming the reward function is the recurring failure mode. Grader output is end-of-trajectory only.</p>
 
 <h3>Dense reward signals on step transitions, not whole-trajectory outcomes</h3>
-<p>Dense reward signals on step transitions &mdash; not just whole-trajectory outcomes &mdash; are what the training loop needs. The reward that can be computed today is end-of-trajectory; the reward reinforcement learning needs to train per-step is not. RL environment + reward + post-train data + long-context eval pipeline are today all four immature for long-horizon tool-using agents. Reward shaping for step-by-step learning over trajectory outcomes, with a training signal whose stability and scalability hold at scale, is open.</p>
+<p>Dense reward signals on step transitions &mdash; not just whole-trajectory outcomes &mdash; are what the training loop needs. The reward that can be computed today is end-of-trajectory; the reward reinforcement learning needs to train per-step is not. RL environment + reward + post-train data + long-context eval pipeline are today all four immature for long-horizon tool-using agents. Reward shaping for step-by-step learning over trajectory outcomes, with a training signal whose stability and scalability hold at scale, is open. Step-level reward requires step-level traces, for which no standard format exists.</p>
 
 <h3>Agent-trajectory data (browser, GUI, SWE) has no canonical format or pipeline</h3>
-<p>Agent-trajectory data &mdash; browser, GUI, SWE code traces &mdash; has no canonical format or pipeline. Browser interactions, SWE/code traces, GUI sessions, and multi-turn workflows are the unsolved data surface. Multi-turn agent data collection and benchmarking at the needed fidelity, and agent trajectory data format standardization, remain open.</p>
+<p>Agent-trajectory data &mdash; browser, GUI, SWE code traces &mdash; has no canonical format or pipeline. Browser interactions, SWE/code traces, GUI sessions, and multi-turn workflows are the unsolved data surface. Multi-turn agent data collection and benchmarking at the needed fidelity, and agent trajectory data format standardization, remain open. The traces are not produced under real usage.</p>
 
 <h3>Real-usage feedback loops for AI agents don't exist</h3>
-<p>Real-usage feedback loops don&rsquo;t exist. Feedback loops from real usage &mdash; collecting, cleaning, and interpreting user signals to inform model and harness changes &mdash; sit on four current blockers: quality is not yet measurable or operational, agent failure taxonomy is open, and quality metric definitions are ambiguous.</p>
+<p>Real-usage feedback loops don&rsquo;t exist. Feedback loops from real usage &mdash; collecting, cleaning, and interpreting user signals to inform model and harness changes &mdash; sit on four current blockers: quality is not yet measurable or operational, agent failure taxonomy is open, and quality metric definitions are ambiguous. Quality criteria are not consistent across gyms.</p>
 
 <h3>Data-quality and reproducibility standards across agent gyms do not yet exist</h3>
-<p>Standards for data quality and reproducibility across large-scale agent gyms &mdash; coverage metrics, invariance checks, trace audits &mdash; do not yet exist. Keeping training signals faithful, stable, and scalable is current state, not aspiration.</p>
+<p>Standards for data quality and reproducibility across large-scale agent gyms &mdash; coverage metrics, invariance checks, trace audits &mdash; do not yet exist. Keeping training signals faithful, stable, and scalable is current state, not aspiration. At session granularity, good/bad/degraded has no operational definition.</p>
 
 <h3>Session-level &ldquo;good / bad / degraded&rdquo; quality primitives at the training loop</h3>
-<p>Quality is not yet measurable or operational. Reliability and guardrails depend on making quality measurable and operational: defining good, bad, and degraded sessions, alerting, and triage primitives &mdash; session-level quality metrics for monitoring AI agents, agent session quality measurement at the training loop. Quality metric definitions remain ambiguous.</p>
+<p>Quality is not yet measurable or operational. Reliability and guardrails depend on making quality measurable and operational: defining good, bad, and degraded sessions, alerting, and triage primitives &mdash; session-level quality metrics for monitoring AI agents, agent session quality measurement at the training loop. Quality metric definitions remain ambiguous. Rubric comparison runs as manual iteration.</p>
 
 <h3>Rubric-methodology comparison and reward-signal iteration &mdash; days of manual experimentation</h3>
-<p>Reward-signal iteration is measured in days of manual experimentation. There is no standardized way to compare rubric methodologies across domains. Running human-data experiments before adding to preference models, debugging reward hacks, comparing rubric methodologies across domains, and assessment of rewards including detection of reward hacks and other pathologies all run as manual loops. Reward hacking is a recurring, ongoing failure mode that needs dedicated detection, not one-off mitigation. Human-feedback-data quality assessment is still manual and ad-hoc.</p>
+<p>Reward-signal iteration is measured in days of manual experimentation. There is no standardized way to compare rubric methodologies across domains. Running human-data experiments before adding to preference models, debugging reward hacks, comparing rubric methodologies across domains, and assessment of rewards including detection of reward hacks and other pathologies all run as manual loops. Reward hacking is a recurring, ongoing failure mode that needs dedicated detection, not one-off mitigation. Human-feedback-data quality assessment is still manual and ad-hoc. Manual iteration admits reward hacks and mode collapse.</p>
 
 <h3>Reward hacking, mode collapse, exploitable loopholes</h3>
-<p>Mitigating reward hacking, mode collapse, and exploitable loopholes is ongoing. RL agents gaming the reward function and exploiting it adversarially is a recurring pathology. Reward design is the bottleneck for reinforcement learning agents.</p>
+<p>Mitigating reward hacking, mode collapse, and exploitable loopholes is ongoing. RL agents gaming the reward function and exploiting it adversarially is a recurring pathology. Reward design is the bottleneck for reinforcement learning agents. Reward design is one of several unresolved areas, alongside trajectory evaluation and curriculum learning.</p>
 
 <h3>Trajectory evaluation, reward design, curriculum learning &mdash; open research</h3>
 <p>Long-horizon agent trajectory evaluation lacks an industry-standard method. Evaluating and improving agent reasoning in complex, long-horizon workflows depends on progress in core bottlenecks: reward design, trajectory evaluation, interruption handling, observation and state design, tool and action interface design, and curriculum learning. Agent trajectory and long-horizon eval remains unsolved.</p>
